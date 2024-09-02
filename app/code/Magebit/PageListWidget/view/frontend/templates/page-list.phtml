@@ -1,0 +1,34 @@
+<?php
+/**
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+use Magebit\PageListWidget\Block\Widget\PageList;
+use Magento\Framework\Escaper;
+
+/** @var PageList $block */
+/** @var Escaper $escaper */
+
+$pages = $block->getPages();
+$title = $block->getTitle();
+?>
+
+<h3><?= $escaper->escapeHtml($title) ?></h3>
+
+<?php if ($pages): ?>
+    <ul class="cms-page-list">
+        <?php foreach ($pages as $page): ?>
+            <li>
+                <a href="<?= $escaper->escapeUrl($block->getPageUrl($page)) ?>">
+                    <?= $escaper->escapeHtml($page->getTitle())  ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p><?= $escaper->escapeHtml(__('No pages found')) ?></p>
+<?php endif; ?>
