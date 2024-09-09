@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+/** @var Attributes $block */
+
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+$_shortDescription = $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description');
+?>
+<?php if ($_additional = $block->getAdditionalData()) :?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?= $block->escapeHtml(__('More Information')) ?></caption>
+            <tbody>
+                <ul  class="pdp-attributes-container">
+                    <?php foreach ($_additional as $_data) :?>
+                        <li class="pdp-attributes-list">
+                            <span><strong><?= $block->escapeHtml($_data['label']) ?>:</strong></span>
+                            <span><?= /* @noEscape */ $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?></span>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <div class="pdp-attributes-short-description">
+                    <?php if ($_shortDescription) : ?>
+                        <?= /* @noEscape */ $_shortDescription ?>
+                    <?php else: ?>
+                        <?= __('No short description available.') ?>
+                    <?php endif; ?>
+                </div>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>

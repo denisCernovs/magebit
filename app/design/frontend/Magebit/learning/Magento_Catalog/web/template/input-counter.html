@@ -1,0 +1,23 @@
+<div class="qty-counter-container">
+    <span class="qty-counter__addon">
+        <button click="decreaseQty" class="qty-counter__button qty-counter__button--decrease">
+            <span class="qty-counter__icon qty-counter__icon--decrease">
+                <svg xmlns="http://www.w3.org/2000/svg" style="padding-bottom: 2px;" fill="#333333" width="10" height="2" viewBox="0 0 10 2"><rect class="a" width="2" height="10" transform="translate(10) rotate(90)"/></svg>
+            </span>
+        </button>
+    </span>
+    <input data-bind="value: qty, valueUpdate: 'input', attr: {'data-validate': getDataValidator(), 'title': $t('Qty')}"
+           type="number"
+           name="qty"
+           id="qty"
+           maxlength="12"
+           max="4"
+           class="qty-counter__input" />
+    <span class="qty-counter__addon">
+        <button click="increaseQty" class="qty-counter__button qty-counter__button--increase">
+            <span class="qty-counter__icon qty-counter__icon--increase">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="#FF5501" viewBox="0 0 10 10"><g transform="translate(-1145 -649)"><rect class="a" width="2" height="10" transform="translate(1149 649)"/><rect class="a" width="2" height="10" transform="translate(1155 653) rotate(90)"/></g></svg>
+            </span>
+        </button>
+    </span>
+</div>
