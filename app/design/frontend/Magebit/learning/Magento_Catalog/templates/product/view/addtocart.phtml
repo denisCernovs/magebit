@@ -30,9 +30,9 @@
                                             "qty-counter": {
                                                 "component": "qty-counter",
                                                 "config": {
-                                                    "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
-                                                    "maxQty": <?php echo $_product->getData('quantity_and_stock_status')['qty']; ?>,
-                                                    "dataValidate": <?php echo json_encode($block->getQuantityValidators()) ?>
+                                                    "qty": "<?php echo $block->getProductDefaultQty() * 1 ?>",
+                                                    "maxQty": "<?php echo $_product->getData('quantity_and_stock_status')['qty']; ?>",
+                                                    "dataValidate": "<?php echo json_encode($block->getQuantityValidators()) ?>"
                                                 }
                                             }
                                          }
