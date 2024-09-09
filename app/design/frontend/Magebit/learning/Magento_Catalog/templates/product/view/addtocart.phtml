@@ -1,0 +1,85 @@
+<?php
+
+/**
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+
+/** @var View $block */
+/** @var Escaper $escaper */
+
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()) :?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()) :?>
+                <div class="field qty qty-container">
+                    <div id="custom-qty" class="control" data-bind="scope: 'qty-counter'">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <script type="text/x-magento-init">
+                            {
+                                "#custom-qty": {
+                                    "Magento_Ui/js/core/app": {
+                                        "components": {
+                                            "qty-counter": {
+                                                "component": "qty-counter",
+                                                "config": {
+                                                    "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
+                                                    "maxQty": <?php echo $_product->getData('quantity_and_stock_status')['qty']; ?>,
+                                                    "dataValidate": <?php echo json_encode($block->getQuantityValidators()); ?>
+                                                }
+                                            }
+                                         }
+                                    }
+                                }
+                            }
+                        </script>
+                    </div>
+                    <div class="qty-stock">
+                        <?php if ($_product->getData('quantity_and_stock_status')['is_in_stock']): ?>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#333" width="11" height="8.005" viewBox="0 0 11 8.005">
+                                <g transform="translate(-32.369 -34.185)">
+                                    <path class="a" d="M43.324,35.378,36.5,42.145a.156.156,0,0,1-.218,0L32.413,38.3a.152.152,0,0,1,0-.215l.941-.933a.155.155,0,0,1,.217,0l2.823,2.8,5.771-5.725a.154.154,0,0,1,.218,0l.941.933A.152.152,0,0,1,43.324,35.378Z" transform="translate(0 0)"/>
+                                </g>
+                            </svg>
+                            <span>
+                                <strong><?= $escaper->escapeHtml(__('IN STOCK')) ?></strong>
+                                <span class="stock-count">
+                                    <?= $escaper->escapeHtml($_product->getData('quantity_and_stock_status')['qty']) ?>
+                                    <?= $escaper->escapeHtml(__('items available')) ?>
+                                </span>
+                            </span>
+                        <?php else: ?>
+                            <span>
+                                <strong><?= $escaper->escapeHtml(__('OUT OF STOCK')) ?></strong>
+                            </span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                        title="<?= $block->escapeHtmlAttr($buttonTitle) ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button" disabled>
+                    <span><?= $block->escapeHtml($buttonTitle) ?></span>
+                </button>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
