@@ -1,9 +1,14 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
  */
 
+use Magento\Catalog\Block\Product\ProductList\Crosssell;
+use Magento\Catalog\Block\Product\ProductList\Related;
+use Magento\Catalog\Block\Product\ProductList\Upsell;
+use Magento\Catalog\Block\Product\ReviewRendererInterface;
 use Magento\Catalog\ViewModel\Product\Listing\PreparePostData;
 use Magento\Framework\App\ActionInterface;
 
@@ -35,7 +40,7 @@ switch ($type = $block->getType()) {
         break;
 
     case 'related':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+        /** @var Related $block */
         if ($exist = $block->getItems()->getSize()) {
             $type = 'related';
             $class = $type;
@@ -76,7 +81,7 @@ switch ($type = $block->getType()) {
         break;
 
     case 'upsell':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Upsell $block */
+        /** @var Upsell $block */
         if ($exist = count($block->getItemCollection()->getItems())) {
             $type = 'upsell';
             $class = $type;
@@ -97,7 +102,7 @@ switch ($type = $block->getType()) {
         break;
 
     case 'crosssell-rule':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        /** @var Crosssell $block */
         if ($exist = $block->hasItems()) {
             $type = 'crosssell';
             $class = $type;
@@ -108,14 +113,14 @@ switch ($type = $block->getType()) {
 
             $showAddTo = true;
             $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $templateType = ReviewRendererInterface::SHORT_VIEW;
             $description = false;
             $canItemsAddToCart = false;
         }
         break;
 
     case 'crosssell':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
+        /** @var Crosssell $block */
         if ($exist = count($block->getItems())) {
             $type = 'crosssell';
             $class = $type;
@@ -126,7 +131,7 @@ switch ($type = $block->getType()) {
 
             $showAddTo = true;
             $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $templateType = ReviewRendererInterface::SHORT_VIEW;
             $description = false;
             $canItemsAddToCart = false;
         }
@@ -146,7 +151,7 @@ switch ($type = $block->getType()) {
 
             $showAddTo = true;
             $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+            $templateType = ReviewRendererInterface::SHORT_VIEW;
             $description = ($mode == 'list') ? true : false;
             $canItemsAddToCart = false;
         }
