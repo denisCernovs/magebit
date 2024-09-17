@@ -1,8 +1,11 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
  */
+
+declare(strict_types=1);
 
 namespace Magebit\Faq\Model\ResourceModel\Question\Grid;
 
@@ -30,6 +33,20 @@ class Collection extends QuestionCollection implements SearchResultInterface
      */
     protected AggregationInterface $aggregations;
 
+    /**
+     * @param EntityFactoryInterface $entityFactory
+     * @param LoggerInterface $logger
+     * @param FetchStrategyInterface $fetchStrategy
+     * @param ManagerInterface $eventManager
+     * @param $mainTable
+     * @param $eventPrefix
+     * @param $eventObject
+     * @param $resourceModel
+     * @param TimezoneInterface $timeZone
+     * @param AdapterInterface|null $connection
+     * @param AbstractDb|null $resource
+     * @param $model
+     */
     public function __construct(
         EntityFactoryInterface $entityFactory,
         LoggerInterface $logger,

@@ -1,5 +1,17 @@
 <?php
+/**
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
+ */
+
+declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+
 /** @var Block $block */
+/** @var Escaper $escaper */
+
 $questions = $block->getFaqQuestions();
 ?>
 
@@ -11,12 +23,14 @@ $questions = $block->getFaqQuestions();
             "multipleCollapsible": true
         }}'>
     <?php foreach ($questions as $question): ?>
-        <div data-role="collapsible">
-            <div data-role="trigger" class="faq-question faq-instance">
-                <h4><?= $question->getQuestion() ?></h4>
+        <?php if ($question->getStatus() == 1): ?>
+            <div data-role="collapsible">
+                <div data-role="trigger" class="faq-question faq-instance">
+                    <h4><?= $escaper->escapeHtml($question->getQuestion()) ?></h4>
+                </div>
             </div>
-        </div>
-        <div data-role="content" class="faq-answer faq-instance"><?= $question->getAnswer() ?></div>
+            <div data-role="content" class="faq-answer faq-instance"><?= $escaper->escapeHtml($question->getAnswer()) ?></div>
+        <?php endif; ?>
     <?php endforeach; ?>
 </div>
 

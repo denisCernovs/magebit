@@ -1,4 +1,11 @@
 <?php
+/**
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
+ */
+
+declare(strict_types=1);
 
 namespace Magebit\Faq\Service;
 
@@ -14,6 +21,7 @@ class QuestionRepository implements QuestionRepositoryInterface
     /**
      * @param QuestionResource $resource
      * @param QuestionFactory $factory
+     * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         private readonly QuestionResource $resource,

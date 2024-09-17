@@ -1,8 +1,11 @@
 <?php
 /**
- * Copyright © Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
+ * @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+ * @author    Magebit<info@magebit.com>
+ * @license   MIT
  */
+
+declare(strict_types=1);
 
 namespace Magebit\Faq\Ui\Question;
 
@@ -31,9 +34,9 @@ class DataProvider extends ModifierPoolDataProvider
     private array $loadedData = [];
 
     /**
-     * @param $name
-     * @param $primaryFieldName
-     * @param $requestFieldName
+     * @param string $name
+     * @param string $primaryFieldName
+     * @param string $requestFieldName
      * @param CollectionFactory $blockCollectionFactory
      * @param DataPersistorInterface $dataPersistor
      * @param array $meta
