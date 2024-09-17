@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @copyright Copyright (c) 2024 Magebit, Ltd. (https://magebit.com/)
+* @author    Magebit<info@magebit.com>
+* @license   MIT
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magebit\Faq\Api\Data\QuestionInterface" type="Magebit\Faq\Model\Question" />
+    <preference for="Magebit\Faq\Api\QuestionRepositoryInterface" type="Magebit\Faq\Service\QuestionRepository" />
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magebit_faq_listing_data_source" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magebit\Faq\Model\ResourceModel\Question\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">faq_questions</argument>
+            <argument name="eventPrefix" xsi:type="string">magebit_faq_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">faq_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question</argument>
+        </arguments>
+    </type>
+    <type name="Magebit\Faq\Model\ResourceModel\Question">
+        <arguments>
+            <argument name="resource" xsi:type="object">Magebit\Faq\Model\ResourceModel\Question</argument>
+        </arguments>
+    </type>
+</config>
+
