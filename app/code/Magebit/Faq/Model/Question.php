@@ -16,20 +16,20 @@ class Question extends AbstractModel implements QuestionInterface {
     private const POSITION = 'position';
     private const UPDATED_AT = 'updated_at';
 
-    public function __construct()
+    protected $_eventPrefix = 'magebit_faq';
+    protected $_eventObject = 'faq';
+
+    protected function _construct()
     {
-        $this->_eventPrefix = 'magebit_faq';
-        $this->_eventObject = 'faq';
-        $this->_idFieldName = self::ID;
         $this->_init(QuestionResource::class);
     }
 
-    public function getId(): int
+    public function getQuestionId(): int
     {
         return (int) $this->getData(self::ID);
     }
 
-    public function setId($id) {
+    public function setQuestionId(int $id) {
         $this->setData(self::ID, $id);
     }
 
@@ -58,7 +58,7 @@ class Question extends AbstractModel implements QuestionInterface {
         return (int) $this->getData(self::STATUS);
     }
 
-    public function setStatus(int $status)
+    public function setStatus(int $status): void
     {
         $this->setData(self::STATUS, $status);
     }

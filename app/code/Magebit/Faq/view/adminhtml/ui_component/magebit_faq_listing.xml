@@ -89,16 +89,16 @@
                     <label translate="true">Enable</label>
                 </settings>
             </action>
-            <action name="edit">
-                <settings>
-                    <callback>
-                        <target>editSelected</target>
-                        <provider>magebit_faq_listing.magebit_faq_listing.magebit_faq_columns_editor</provider>
-                    </callback>
-                    <type>edit</type>
-                    <label translate="true">Edit</label>
-                </settings>
-            </action>
+<!--            <action name="edit">-->
+<!--                <settings>-->
+<!--                    <callback>-->
+<!--                        <target>editSelected</target>-->
+<!--                        <provider>magebit_faq_listing.magebit_faq_listing.magebit_faq_columns_editor</provider>-->
+<!--                    </callback>-->
+<!--                    <type>edit</type>-->
+<!--                    <label translate="true">Edit</label>-->
+<!--                </settings>-->
+<!--            </action>-->
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>

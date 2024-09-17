@@ -6,8 +6,11 @@ use Magento\Framework\Stdlib\DateTime;
 
 interface QuestionInterface {
 
-    public function getId(): int;
-    public function setId(int $id);
+    public const STATUS_DISABLED = 0;
+    public const STATUS_ENABLED = 1;
+
+    public function getQuestionId(): int;
+    public function setQuestionId(int $id);
     public function getQuestion(): string;
     public function setQuestion(string $question);
     public function getAnswer(): string;

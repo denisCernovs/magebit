@@ -30,12 +30,6 @@ class Collection extends QuestionCollection implements SearchResultInterface
      */
     protected AggregationInterface $aggregations;
 
-//    /** @var mixed */
-//    private $model;
-//
-//    /** @var string */
-//    private $resourceModel;
-
     public function __construct(
         EntityFactoryInterface $entityFactory,
         LoggerInterface $logger,

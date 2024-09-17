@@ -15,8 +15,8 @@ use Magento\Ui\Component\Listing\Columns\Column;
 class FaqActions extends Column
 {
     /** Url path */
-    const URL_PATH_EDIT = 'question/index/edit';
-    const URL_PATH_DELETE = 'quesion/index/delete';
+    const URL_PATH_EDIT = 'faq/index/edit';
+    const URL_PATH_DELETE = 'faq/index/delete';
 
     /**
      * @var UrlInterface

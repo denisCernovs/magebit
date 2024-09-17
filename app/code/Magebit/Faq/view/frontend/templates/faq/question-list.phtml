@@ -1,0 +1,22 @@
+<?php
+/** @var Block $block */
+$questions = $block->getFaqQuestions();
+?>
+
+<div class="faq-container" id="accordion" data-mage-init='{
+        "accordion":{
+            "active": [0],
+            "collapsible": true,
+            "openedState": "active",
+            "multipleCollapsible": true
+        }}'>
+    <?php foreach ($questions as $question): ?>
+        <div data-role="collapsible">
+            <div data-role="trigger" class="faq-question faq-instance">
+                <h4><?= $question->getQuestion() ?></h4>
+            </div>
+        </div>
+        <div data-role="content" class="faq-answer faq-instance"><?= $question->getAnswer() ?></div>
+    <?php endforeach; ?>
+</div>
+
